@@ -14,3 +14,18 @@ This challenge consists of creating a web application that allows searching for 
 - Implement a soft-delete of characters.
 - Implement a search by: Status, Species and Gender.
 - Implement unit tests to at least 3 components or layouts.
+
+## Project execution
+
+1. Clone the repository
+```bash
+git clone
+```
+2. Install dependencies
+```bash
+npm install
+```
+3. Run the project
+```bash
+npm run dev
+```
