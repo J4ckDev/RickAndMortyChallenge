@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useQuery } from "@apollo/client"
 
-function App() {
-  const [count, setCount] = useState(0)
+import { getCharacterById, getCharacters } from "./queries/characters"
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+const RenderCharacters = () => {
+    const { loading, error, data } = useQuery(
+        getCharacters,
+        {
+            variables: {
+                page: 1
+            }
+        }
+    )
+
+    if (loading) return <p>Loading...</p>
+    if (error) return <p>Error {error.message}</p>
+    
+    return data.characters.results.map(({ id, image, name, species }) => {
+        return (
+            <div key={id}>
+                <img src={image} alt={name} />
+                <p>{name}</p>
+                <p>{species}</p>
+            </div>
+        )
+    })
 }
 
-export default App
+const RenderCharacter = () => {
+    const { loading, error, data } = useQuery(
+        getCharacterById,
+        {
+            variables: {
+                id: 817
+            }
+        }
+    )
+
+    if (loading) return <p>Loading...</p>
+    if (error) return <p>Error {error.message}</p>
+    
+    return (
+        <div>
+            <img src={data.character.image} alt={data.character.name} />
+            <p>{data.character.name}</p>
+            <p>{data.character.species}</p>
+            <p>{data.character.status}</p>
+            <p>{data.character.gender}</p>
+            <p>{data.character.type}</p>
+        </div>
+    )
+
+}
+
+export const App = () => {
+    return (
+        <div>
+            <h1>Rick and Morty list</h1>
+            <RenderCharacters />
+        </div>
+    )
+}

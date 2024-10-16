@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'Greycliff CF';
+        font-style: normal;
+        font-weight: 700;
+        src: url(./assets/font/Greycliff-CF-Bold.otf);
+    }
+    
+    @font-face {
+        font-family: 'Greycliff CF';
+        font-style: normal;
+        font-weight: 600;
+        src: url(./assets/font/Greycliff-CF-Demi-Bold.otf);
+    }
+    
+    @font-face {
+        font-family: 'Greycliff CF';
+        font-style: normal;
+        font-weight: 500;
+        src: url(./assets/font/Greycliff-CF-Medium.otf);
+    }
+    
+    @font-face {
+        font-family: 'Greycliff CF';
+        font-style: normal;
+        font-weight: 400;
+        src: url(./assets/font/Greycliff-CF-Regular.otf);
+    }
+}
+
+:root {
+    --primary-100: rgba(238, 227, 255, 1);
+    --primary-600: rgba(128, 84, 199, 1);
+    --primary-700: rgba(90, 54, 150, 1);
+    --secondary-100: rgba(227, 255, 227, 1);
+    --secondary-600: rgba(99, 216, 56, 1);
+    --secondary-700: rgba(59, 133, 32, 1);  
+}
